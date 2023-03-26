@@ -14,5 +14,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+  $features = [
+    [
+      "icon" => "images/cv.svg",
+      "title" => "Resume Builder"
+    ],
+    [
+      "icon" => "images/conversation.svg",
+      "title" => "Interview Tips"
+    ],
+    [
+      "icon" => "images/statistic.svg",
+      "title" => "Career Advice"
+    ],
+  ];
+  return view('home', [
+    "text" => "We also offer a range of resources to help you succed in your job search and with our personalized job alerts, you can receive notifications when new job opportunities that match your preferences become available.",
+    "features" => $features
+  ]);
 });
