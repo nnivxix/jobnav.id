@@ -84,9 +84,49 @@ Route::get('/', function () {
       "job_type" => "remote"
     ],
   ];
+  $latest_posts = [
+    [
+      "image" => "images/post_images/1.jpg",
+      "title" => "16 Examples of Self-Description in a resume That Can Get Recruiters' Attention",
+      "posted_at" => "12/7/2020",
+      "excerpt" => "our resume is your first impression to potential employers, so it's important to make it count. In this post, we'll outline 10 common mistakes people make when writing their resumes and how to avoid them."
+    ],
+    [
+      "image" => "images/post_images/2.jpg",
+      "title" => "16 Examples of Self-Description in a resume That Can Get Recruiters' Attention",
+      "posted_at" => "12/7/2020",
+      "excerpt" => "our resume is your first impression to potential employers, so it's important to make it count. In this post, we'll outline 10 common mistakes people make when writing their resumes and how to avoid them."
+    ],
+    [
+      "image" => "images/post_images/3.jpg",
+      "title" => "16 Examples of Self-Description in a resume That Can Get Recruiters' Attention",
+      "posted_at" => "12/7/2020",
+      "excerpt" => "our resume is your first impression to potential employers, so it's important to make it count. In this post, we'll outline 10 common mistakes people make when writing their resumes and how to avoid them."
+    ],
+    [
+      "image" => "images/post_images/4.jpg",
+      "title" => "16 Examples of Self-Description in a resume That Can Get Recruiters' Attention",
+      "posted_at" => "12/7/2020",
+      "excerpt" => "our resume is your first impression to potential employers, so it's important to make it count. In this post, we'll outline 10 common mistakes people make when writing their resumes and how to avoid them."
+    ],
+    [
+      "image" => "images/post_images/5.jpg",
+      "title" => "16 Examples of Self-Description in a resume That Can Get Recruiters' Attention",
+      "posted_at" => "12/7/2020",
+      "excerpt" => "our resume is your first impression to potential employers, so it's important to make it count. In this post, we'll outline 10 common mistakes people make when writing their resumes and how to avoid them."
+    ],
+    [
+      "image" => "images/post_images/6.jpg",
+      "title" => "16 Examples of Self-Description in a resume That Can Get Recruiters' Attention",
+      "posted_at" => "12/7/2020",
+      "excerpt" => "our resume is your first impression to potential employers, so it's important to make it count. In this post, we'll outline 10 common mistakes people make when writing their resumes and how to avoid them."
+    ],
+
+  ];
   return view('home', [
     "text" => "We also offer a range of resources to help you succed in your job search and with our personalized job alerts, you can receive notifications when new job opportunities that match your preferences become available.",
     "features" => $features,
-    "latest_jobs" => $latest_jobs
+    "latest_jobs" => $latest_jobs,
+    "latest_posts" => $latest_posts,
   ]);
 });
