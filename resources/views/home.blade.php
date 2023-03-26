@@ -4,4 +4,5 @@
 @include('components.navbar')
 <x-hero></x-hero>
 <x-features :$text :features="$features"></x-features>
+<x-latestjobs :$latest_jobs></x-latestjobs>
 @endsection
