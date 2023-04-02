@@ -7,4 +7,5 @@
 <x-latestjobs :$latest_jobs></x-latestjobs>
 <x-latestposts :$latest_posts></x-latestposts>
 <x-subscribe></x-subscribe>
+<x-footer></x-footer>
 @endsection
