@@ -8,8 +8,8 @@
       <img class="col-start-1 place-self-center p-3 col-end-2 row-start-1 row-end-3" src="{{ $job['icon'] }}" alt="{{ $job['company'] }}" srcset="">
       <h1 class="text-smoke-700 col-start-2 col-end-5" id="company">{{ $job['company'] }}</h1>
       <h2 class="text-smoke-700 row-start-2 col-start-2 col-end-5" id="position">{{ $job['position'] }}</h2>
-      <button class="col-start-6 row-span-2 rounded-md flex justify-center items-center">
-        <img src="{{ URL::asset('images/bookmark.svg') }}" alt="bookmark" title="bookmark icon">
+      <button class="col-start-6 row-span-2 rounded-md flex justify-end items-center">
+        <img src="{{ URL::asset('images/bookmark.svg') }}" class="w-[24px]" alt="bookmark" title="bookmark icon">
       </button>
     </div>
     <h3 class="py-4 font-bold text-xl text-smoke-800" id="job title">{{ $job['title'] }}</h3>
