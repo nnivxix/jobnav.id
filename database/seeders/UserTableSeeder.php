@@ -23,5 +23,7 @@ class UserTableSeeder extends Seeder
     ], [
       'password' => bcrypt('password'),
     ]);
+
+    $hanasa->flag('admin');
   }
 }
