@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->text('header')->nullable();
-            $table->string('photo')->nullable();
+            $table->string('avatar')->nullable();
             $table->string('cover')->nullable();
             $table->string('skills')->nullable();
             $table->timestamps();

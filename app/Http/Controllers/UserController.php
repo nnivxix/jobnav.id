@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,8 +17,10 @@ class UserController extends Controller
   public function index()
   {
     $user = User::findOrFail(Auth::user()->id);
+    $profile = Profile::findOrFail(Auth::user()->id);
     return view('profile', [
-      'user' => $user
+      'user'    => $user,
+      'profile' => $profile,
     ]);
   }
 

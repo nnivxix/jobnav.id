@@ -11,6 +11,7 @@
         "laravel/framework": "^9.0",
         "laravel/sanctum": "^2.14",
         "laravel/tinker": "^2.7",
+        "marksitko/laravel-unsplash": "^2.2",
         "spatie/laravel-model-flags": "^1.2"
     },
     "require-dev": {

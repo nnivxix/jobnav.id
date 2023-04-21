@@ -25,5 +25,11 @@ class UserTableSeeder extends Seeder
     ]);
 
     $hanasa->flag('admin');
+    $hanasa->profile()->create([
+      'header' => fake()->paragraph(),
+      'avatar' => fake()->imageUrl(640, 640, 'people'),
+      'cover' => fake()->sentence(),
+      'skills' => null,
+    ]);
   }
 }

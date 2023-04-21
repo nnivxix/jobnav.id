@@ -8,7 +8,7 @@
   </ul>
   <ul class="text-md col-span-1 flex justify-between items-center w-1/2 place-self-end">
     @auth
-    <li><a href="/profile">{{ auth()->user()->name }}</a></li>
+    <li><a href="/user">{{ auth()->user()->name }}</a></li>
     <form action="/logout">
       <button>Logout</button>
     </form>
