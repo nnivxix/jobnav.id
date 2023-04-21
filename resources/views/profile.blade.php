@@ -1,1 +1,1 @@
-<h1>masuk</h1>
+<h1>masuk sebagai {{ $user['name'] }}</h1>

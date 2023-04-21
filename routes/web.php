@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -134,6 +135,5 @@ Route::get('/', function () {
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'store']);
 
-Route::get('/profile', function () {
-  return "masuk";
-})->middleware(['auth']);
+Route::get('/profile', [UserController::class, 'index'])->middleware(['auth']);
+Route::get('/profile/{user:username}', [UserController::class, 'show']);
