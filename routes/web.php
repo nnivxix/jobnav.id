@@ -135,5 +135,8 @@ Route::get('/', function () {
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'store']);
 
-Route::get('/profile', [UserController::class, 'index'])->middleware(['auth']);
-Route::get('/profile/{user:username}', [UserController::class, 'show']);
+Route::controller(UserController::class)->group(function () {
+  Route::get('/profile',  'index')->middleware(['auth']);
+  Route::get('/profile/{user:username}', 'show');
+  Route::get('/logout', 'destroy')->middleware('auth');
+});

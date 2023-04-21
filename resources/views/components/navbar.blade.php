@@ -9,6 +9,9 @@
   <ul class="text-md col-span-1 flex justify-between items-center w-1/2 place-self-end">
     @auth
     <li><a href="/profile">{{ auth()->user()->name }}</a></li>
+    <form action="/logout">
+      <button>Logout</button>
+    </form>
     @else
     <li class="bg-orange-500 text-white py-2 px-4 rounded-lg"><a href="#">Sign up</a></li>
     <li><a href="/login">Log in</a></li>
