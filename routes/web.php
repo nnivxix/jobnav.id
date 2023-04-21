@@ -131,4 +131,9 @@ Route::get('/', function () {
     "latest_posts" => $latest_posts,
   ]);
 });
-Route::get('/login', [LoginController::class, 'index']);
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'store']);
+
+Route::get('/profile', function () {
+  return "masuk";
+})->middleware(['auth']);

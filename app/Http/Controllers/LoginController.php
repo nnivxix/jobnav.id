@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -35,7 +36,16 @@ class LoginController extends Controller
    */
   public function store(Request $request)
   {
-    //
+    $credential = $request->validate([
+      'email' => 'required|email:dns',
+      'password' => 'required'
+    ]);
+    if (Auth::attempt($credential)) {
+      $request->session()->regenerate();
+      return redirect()->intended('/profile');
+    }
+
+    return 'no';
   }
 
   /**
