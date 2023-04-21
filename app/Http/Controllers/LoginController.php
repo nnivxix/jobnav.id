@@ -42,10 +42,8 @@ class LoginController extends Controller
     ]);
     if (Auth::attempt($credential)) {
       $request->session()->regenerate();
-      return redirect()->intended('/profile');
+      return redirect()->intended('/user');
     }
-
-    return 'no';
   }
 
   /**
