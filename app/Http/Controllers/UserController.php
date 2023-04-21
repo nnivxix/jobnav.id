@@ -18,7 +18,7 @@ class UserController extends Controller
   {
     $user = User::findOrFail(Auth::user()->id);
     $profile = Profile::findOrFail(Auth::user()->id);
-    return view('profile', [
+    return view('users.index', [
       'user'    => $user,
       'profile' => $profile,
     ]);
@@ -52,7 +52,7 @@ class UserController extends Controller
    */
   public function show(User $user)
   {
-    return view('user', [
+    return view('users.show', [
       'user' => $user
     ]);
   }
