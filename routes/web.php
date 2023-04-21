@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -130,3 +131,4 @@ Route::get('/', function () {
     "latest_posts" => $latest_posts,
   ]);
 });
+Route::get('/login', [LoginController::class, 'index']);
