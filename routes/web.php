@@ -136,7 +136,7 @@ Route::get('/login', [LoginController::class, 'index'])->name('login')->middlewa
 Route::post('/login', [LoginController::class, 'store']);
 
 Route::controller(UserController::class)->group(function () {
-  Route::get('/profile',  'index')->middleware(['auth']);
-  Route::get('/profile/{user:username}', 'show');
+  Route::get('/user',  'index')->middleware(['auth']);
+  Route::get('/user/{user:username}', 'show');
   Route::get('/logout', 'destroy')->middleware('auth');
 });
