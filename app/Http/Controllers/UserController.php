@@ -3,86 +3,69 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Profile;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-  /**
-   * Display a listing of the resource.
-   *
-   * @return \Illuminate\Http\Response
-   */
   public function index()
   {
     $user = User::findOrFail(Auth::user()->id);
-    return view('profile', [
-      'user' => $user
+    $profile = Profile::findOrFail(Auth::user()->id);
+    return view('users.index', [
+      'user'    => $user,
+      'profile' => $profile,
     ]);
   }
-
-  /**
-   * Show the form for creating a new resource.
-   *
-   * @return \Illuminate\Http\Response
-   */
   public function create()
   {
+    return view('register');
   }
-
-  /**
-   * Store a newly created resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Http\Response
-   */
   public function store(Request $request)
   {
-    //
   }
 
-  /**
-   * Display the specified resource.
-   *
-   * @param  \App\Models\User  $user
-   * @return \Illuminate\Http\Response
-   */
   public function show(User $user)
   {
-    return view('user', [
+    return view('users.show', [
       'user' => $user
     ]);
   }
-
-  /**
-   * Show the form for editing the specified resource.
-   *
-   * @param  \App\Models\User  $user
-   * @return \Illuminate\Http\Response
-   */
   public function edit(User $user)
   {
-    //
+    return view('users.edit', [
+      'user' =>  $user,
+      'profile' => Profile::find($user->id)
+    ]);
   }
-
-  /**
-   * Update the specified resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @param  \App\Models\User  $user
-   * @return \Illuminate\Http\Response
-   */
-  public function update(Request $request, User $user)
+  public function update(Request $request)
   {
-    //
-  }
+    $profile = Profile::where('id', auth()->user()->id)->first();
+    $user = User::where('id', auth()->user()->id)->first();
 
-  /**
-   * Remove the specified resource from storage.
-   *
-   * @param  \App\Models\User  $user
-   * @return \Illuminate\Http\Response
-   */
+    $avatar = $request->file('avatar');
+    $validatedData = $request->validate([
+      'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    ]);
+    if ($request->file('avatar')) {
+      $avatar_file_name = Str::random(40) . '.' . $avatar->getClientOriginalExtension();
+      Storage::delete('public/' . $profile->avatar);
+      $avatar->storePubliclyAs('avatars', $avatar_file_name, 'public');
+      $profile->avatar = 'avatars/' . $avatar_file_name;
+    }
+    $profile->skills = $request->skills;
+    $profile->header = $request->header;
+    $profile->save();
+
+    $user->name = $request->name;
+    $user->username = $request->username;
+    $user->save();
+    return redirect('/user');
+  }
   public function destroy(Request $request)
   {
     Auth::logout();
