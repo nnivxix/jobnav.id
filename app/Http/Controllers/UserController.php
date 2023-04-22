@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -27,6 +28,21 @@ class UserController extends Controller
   }
   public function store(Request $request)
   {
+    $userInfo = $request->validate([
+      'name'     => 'required|string',
+      'username' => 'required|string',
+      'email'    => 'required|email:dns',
+      'password' => 'required',
+    ]);
+    $userInfo['password'] = Hash::make($userInfo['password']);
+    $user = User::create($userInfo);
+    $user->profile()->create([
+      'header' => null,
+      'avatar' => null,
+      'cover'  => null,
+      'skills' => null,
+    ]);
+    return redirect('/login');
   }
 
   public function show(User $user)

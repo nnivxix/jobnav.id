@@ -142,4 +142,5 @@ Route::controller(UserController::class)->group(function () {
   Route::put('/user/update', 'update')->middleware('auth')->name('user.update');
   Route::get('/logout', 'destroy')->middleware('auth');
   Route::get('/register', 'create')->name('register')->middleware('guest');
+  Route::post('/register', 'store')->name('save.user');
 });
