@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Company;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -14,10 +16,19 @@ class CompanyFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    protected $model = Company::class;
     public function definition()
     {
         return [
-            //
+            'name'         => $this->faker->company(),
+            'avatar'       => UploadedFile::fake()->image('thumbnail' . time() . '.jpg', 400, 400)->store('company/avatars', 'public'),
+            'image_cover'  => UploadedFile::fake()->image('thumbnail' . time() . '.jpg', 800, 300)->store('company/covers', 'public'),
+            'about'        => $this->faker->sentence(20),
+            'ownedby'      => random_int(1, 20),
+            'location'     => $this->faker->country(),
+            'full_address' => $this->faker->address(),
+            'website'      => $this->faker->url(),
+            'posted_at'    => now(),
         ];
     }
 }

@@ -19,9 +19,9 @@ return new class extends Migration
             $table->string('avatar');
             $table->string('image_cover');
             $table->text('about');
-            $table->string('ownedby');
+            $table->integer('ownedby');
             $table->string('location');
-            $table->string('full_addres');
+            $table->string('full_address');
             $table->string('website');
             $table->date('posted_at');
             $table->timestamps();
