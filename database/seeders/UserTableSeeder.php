@@ -15,6 +15,7 @@ class UserTableSeeder extends Seeder
    */
   public function run()
   {
+    User::factory()->count(19)->create();
     $hanasa = User::firstOrCreate([
       'name'              => 'Hanasa',
       'username'          => 'hanasa',
