@@ -13,7 +13,7 @@
       <button>Logout</button>
     </form>
     @else
-    <li class="bg-orange-500 text-white py-2 px-4 rounded-lg mr-3"><a href="#">Sign up</a></li>
+    <li class="bg-orange-500 text-white py-2 px-4 rounded-lg mr-3"><a href="/register">Sign up</a></li>
     <li><a href="/login">Log in</a></li>
     @endauth
   </ul>

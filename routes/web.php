@@ -141,4 +141,5 @@ Route::controller(UserController::class)->group(function () {
   Route::get('/user/{user:username}/edit', 'edit')->middleware('auth');
   Route::put('/user/update', 'update')->middleware('auth')->name('user.update');
   Route::get('/logout', 'destroy')->middleware('auth');
+  Route::get('/register', 'create')->name('register')->middleware('guest');
 });
