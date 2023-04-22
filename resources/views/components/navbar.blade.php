@@ -3,7 +3,7 @@
   <ul class="text-md flex w-1/2  place-self-center justify-center col-span-4" id="middle">
     <li class="px-3"><a href="#">Jobs</a></li>
     <li class="px-3"><a href="#">Learn</a></li>
-    <li class="px-3"><a href="#">Companies</a></li>
+    <li class="px-3"><a href="/companies">Companies</a></li>
     <li class="px-3"><a href="#">Services</a></li>
   </ul>
   <ul class="text-md col-span-1 flex items-center w-3/4 place-self-end">
