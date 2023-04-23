@@ -21,6 +21,7 @@ class CompanyFactory extends Factory
     {
         return [
             'name'         => $this->faker->company(),
+            'slug'         => $this->faker->slug(2, false),
             'avatar'       => UploadedFile::fake()->image('thumbnail' . time() . '.jpg', 400, 400)->store('company/avatars', 'public'),
             'image_cover'  => UploadedFile::fake()->image('thumbnail' . time() . '.jpg', 800, 300)->store('company/covers', 'public'),
             'about'        => $this->faker->sentence(20),
@@ -28,7 +29,7 @@ class CompanyFactory extends Factory
             'location'     => $this->faker->country(),
             'full_address' => $this->faker->address(),
             'website'      => $this->faker->url(),
-            'posted_at'    => now(),
+            'posted_at'    => $this->faker->dateTimeInInterval('0 week', '+3 week'),
         ];
     }
 }
