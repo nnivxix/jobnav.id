@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -143,4 +144,11 @@ Route::controller(UserController::class)->group(function () {
   Route::get('/logout', 'destroy')->middleware('auth');
   Route::get('/register', 'create')->name('register')->middleware('guest');
   Route::post('/register', 'store')->name('save.user');
+});
+
+Route::controller(CompanyController::class)->group(function () {
+  Route::get('/companies', 'index')->name('companies');
+  Route::get('/companies/{company:slug}', 'show');
+  Route::get('/companies/{company:slug}/edit', 'edit')->middleware('owner.company')->name('companies.edit');
+  Route::put('/companies/update/{slug}', 'update')->name('companies.update');
 });
