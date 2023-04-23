@@ -62,7 +62,9 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        //
+        return view('companies.edit', [
+            'company' =>  $company,
+        ]);
     }
 
     /**
