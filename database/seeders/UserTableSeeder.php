@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Profile;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -15,7 +16,6 @@ class UserTableSeeder extends Seeder
    */
   public function run()
   {
-    User::factory()->count(19)->create();
     $hanasa = User::firstOrCreate([
       'name'              => 'Hanasa',
       'username'          => 'hanasa',
@@ -32,5 +32,8 @@ class UserTableSeeder extends Seeder
       'cover' => fake()->sentence(),
       'skills' => null,
     ]);
+    User::factory()
+      ->has(Profile::factory())
+      ->count(19)->create();
   }
 }
