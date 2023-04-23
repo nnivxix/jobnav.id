@@ -148,4 +148,5 @@ Route::controller(UserController::class)->group(function () {
 
 Route::controller(CompanyController::class)->group(function () {
   Route::get('/companies', 'index');
+  Route::get('/companies/{company:slug}', 'show');
 });

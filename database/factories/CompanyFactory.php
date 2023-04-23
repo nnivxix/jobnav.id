@@ -24,7 +24,7 @@ class CompanyFactory extends Factory
             'slug'         => $this->faker->slug(2, false),
             'avatar'       => UploadedFile::fake()->image('thumbnail' . time() . '.jpg', 400, 400)->store('company/avatars', 'public'),
             'image_cover'  => UploadedFile::fake()->image('thumbnail' . time() . '.jpg', 800, 300)->store('company/covers', 'public'),
-            'about'        => $this->faker->sentence(20),
+            'about'        => $this->faker->sentence(200),
             'ownedby'      => random_int(1, 20),
             'location'     => $this->faker->country(),
             'full_address' => $this->faker->address(),
