@@ -150,5 +150,5 @@ Route::controller(CompanyController::class)->group(function () {
   Route::get('/companies', 'index')->name('companies');
   Route::get('/companies/{company:slug}', 'show');
   Route::get('/companies/{company:slug}/edit', 'edit')->middleware('owner.company')->name('companies.edit');
-  Route::put('/companies/update', 'update')->middleware('owner.company')->name('companies.update');
+  Route::put('/companies/update/{slug}', 'update')->name('companies.update');
 });

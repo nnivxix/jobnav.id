@@ -2,7 +2,7 @@
 
 @section('container')
 @include('components.navbar')
-<form action="{{ route('user.update') }}" method="post" enctype="multipart/form-data" class="grid w-3/4 mx-auto my-4">
+<form action="{{ env('APP_URL') }}/companies/update/{{$company['slug']}}" method="post" enctype="multipart/form-data" class="grid w-3/4 mx-auto my-4">
     {{ method_field('put') }}
     @csrf
     <div class="flex flex-col">

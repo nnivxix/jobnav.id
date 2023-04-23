@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CompanyController extends Controller
 {
@@ -74,9 +76,25 @@ class CompanyController extends Controller
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $company)
+    public function update(Request $request, $slug)
     {
-        //
+        $company = Company::where('slug', $slug)->first();
+        $avatar = $request->file('avatar');
+        if ($avatar) {
+            $avatar_file_name = Str::random(40) . '.' . $avatar->getClientOriginalExtension();
+            Storage::delete('public/' . $company->avatar);
+            $avatar->storePubliclyAs('company/avatars', $avatar_file_name, 'public');
+            $company->avatar = 'company/avatars/' . $avatar_file_name;
+        }
+        $company->name = $request->name;
+        $company->slug = $request->slug;
+        $company->about = $request->about;
+        $company->location = $request->location;
+        $company->website = $request->website;
+        $company->full_address = $request->full_address;
+
+        $company->save();
+        return back();
     }
 
     /**

@@ -6,7 +6,7 @@
 <ul class="grid grid-cols-2 w-3/4 mx-auto gap-4">
     @foreach($companies as $company)
     <li class="bg-gray-200 flex my-3 w-full mx-4">
-        <img class="w-20 h-20" src="/storage/{{$company->avatar}}" alt="">
+        <img class="w-20 h-20 object-cover" src="/storage/{{$company->avatar}}" alt="">
         <div class="flex flex-col justify-center ml-3">
             <a href="/companies/{{$company['slug']}}">
                 <h1 class="text-xl">{{$company->name}}</h1>
