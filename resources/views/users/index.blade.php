@@ -24,12 +24,12 @@
     @foreach($experiences as $experience)
     <div class="grid grid-cols-4 w-1/2 m-3 relative text-smoke-800">
         @if($experience->still_work)
-        <span class="absolute bg-green-600 text-white px-2 rounded-sm">still work</span>
+        <span class="absolute bg-green-600 text-white px-2">still working</span>
         @endif
         <img class="row-span-2 w-32" src="/storage/company/avatars/nmEEzaZMOn8gGYgK7QmGsFZdFHSI6hKBEDTjGyIg.jpg" alt="{{$experience->company_name}}">
         <h1 class="col-start-2 col-end-5 text-2xl font-semibold">{{ $experience->title }}</h1>
         <h2 class="col-start-2 col-end-4 text-lg">at {{ $experience->company_name }}</h2>
-        <p class="col-span-5 text-lg">at {{ $experience->location }}</p>
+        <p class="col-span-5 text-lg">{{ $experience->location }}</p>
         <p class="col-span-full text-justify py-4">{{ $experience->description }}</p>
         <span class="col-start-1 place-self-end justify-self-start">{{ $experience->started }}</span>
         <span class="col-start-4 place-self-end justify-self-end">{{ $experience->ended }}</span>
