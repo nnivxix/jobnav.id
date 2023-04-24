@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Experience;
 use App\Models\User;
 use App\Models\Profile;
 use Illuminate\Support\Str;
@@ -17,9 +18,11 @@ class UserController extends Controller
   {
     $user = User::findOrFail(Auth::user()->id);
     $profile = Profile::findOrFail(Auth::user()->id);
+    $experiences = Experience::all()->where('user_id', Auth::user()->id);
     return view('users.index', [
       'user'    => $user,
       'profile' => $profile,
+      'experiences' => $experiences,
     ]);
   }
   public function create()
