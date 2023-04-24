@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('experiences', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
+            $table->integer('user_id');
             $table->string('title');
             $table->string('company_name');
             $table->boolean('still_work')->default(false);
