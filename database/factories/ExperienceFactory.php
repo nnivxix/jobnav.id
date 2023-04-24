@@ -22,7 +22,7 @@ class ExperienceFactory extends Factory
             'company_name' => $this->faker->company(),
             'location' => $this->faker->city() . ', ' . $this->faker->country(),
             'description' => $this->faker->sentence(37),
-            'started' => $this->faker->dateTimeInInterval('-9 week', '0 week'),
+            'started' => $this->faker->dateTimeInInterval('0 week', '-9 week'),
             'ended' => $this->faker->dateTimeInInterval('0 week', '+9 week'),
         ];
     }
