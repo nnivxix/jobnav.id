@@ -23,12 +23,13 @@ class CompanyController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'avatar'       => "string",
+            'avatar'       => "image|mimes:jpeg,png,jpg,gif,svg|max:2048",
+            'image_cover'  => "image|mimes:jpeg,png,jpg,gif,svg|max:2048",
             "name"         => "required|string",
-            "slug"         => "required",
+            "slug"         => "required|string",
             "ownedby"      => "number",
-            "about"        => "required",
-            "location"     => "required",
+            "about"        => "string",
+            "location"     => "string",
             "website"      => "string",
             "full_address" => "string",
         ]);
@@ -38,7 +39,6 @@ class CompanyController extends Controller
             $avatar->storePubliclyAs('company/avatars', $avatar_file_name, 'public');
             $validate['avatar'] = 'company/avatars/' . $avatar_file_name;
         }
-        $validate["ownedby"] = auth()->user()->id;
         Company::create($validate);
         return redirect('/companies');
     }

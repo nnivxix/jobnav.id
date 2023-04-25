@@ -148,7 +148,7 @@ Route::controller(UserController::class)->group(function () {
 
 Route::controller(CompanyController::class)->group(function () {
   Route::get('/companies', 'index')->name('companies');
-  Route::get('/companies/create', 'create')->name('companies.create');
+  Route::get('/companies/create', 'create')->name('companies.create')->middleware('auth');
   Route::post('/companies', 'store')->name('companies.store');
   Route::get('/companies/{company:slug}', 'show');
   Route::get('/companies/{company:slug}/edit', 'edit')->middleware('owner.company')->name('companies.edit');

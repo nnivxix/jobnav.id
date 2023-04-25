@@ -40,5 +40,10 @@
     @endforeach
     @endif
 </div>
+<div class="border p-5 m-3 ">
+    <p class="text-center ">
+        Need create company? <a class="underline" href="{{route('companies.create')}}">create here</a>
+    </p>
+</div>
 <x-footer></x-footer>
 @endsection
