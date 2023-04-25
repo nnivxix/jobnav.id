@@ -12,7 +12,7 @@
             <h2>Address: {{ $company['full_address'] }}</h2>
         </div>
         <h2>Website: <a class="underline decoration-dashed" href="{{ $company['website'] }}">{{explode('/',$company['website'])[2] }}</a></h2>
-        @if(auth()->user()->id === $company['ownedby'])
+        @if( auth()->check() && auth()->user()->id === $company['ownedby'])
         <a href="/companies/{{ $company['slug']}}/edit" class="absolute right-0 top-0 text-md py-2 px-7 bg-slate-600 text-white rounded-md">Edit</a>
         @endif
     </div>
