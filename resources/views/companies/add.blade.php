@@ -7,7 +7,7 @@
     <div class="flex flex-col">
         <div class="relative w-36 h-36">
             <span id="clear" class="absolute right-0 top-0 text-lg" style="cursor: pointer;">x</span>
-            <img class="w-36 h-36 rounded-full object-cover" src="/images/company.jpg" alt="" id="preview">
+            <img class="w-36 h-36 rounded-full object-cover" name="avatar" src="/images/company.jpg" alt="" id="preview">
         </div>
         <input type="file" accept="image/png, image/jpeg" name="avatar" id="imageInput" onchange="previewFiles()" class="pt-6" />
     </div>

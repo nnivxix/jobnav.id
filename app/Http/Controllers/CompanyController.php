@@ -20,24 +20,29 @@ class CompanyController extends Controller
     {
         return view('companies.add');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'avatar'       => "string",
+            "name"         => "required|string",
+            "slug"         => "required",
+            "ownedby"      => "number",
+            "about"        => "required",
+            "location"     => "required",
+            "website"      => "string",
+            "full_address" => "string",
+        ]);
+        $avatar = $request->file('avatar');
+        if ($avatar) {
+            $avatar_file_name = Str::random(40) . '.' . $avatar->getClientOriginalExtension();
+            $avatar->storePubliclyAs('company/avatars', $avatar_file_name, 'public');
+            $validate['avatar'] = 'company/avatars/' . $avatar_file_name;
+        }
+        $validate["ownedby"] = auth()->user()->id;
+        Company::create($validate);
+        return redirect('/companies');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Company  $company
-     * @return \Illuminate\Http\Response
-     */
     public function show(Company $company)
     {
         return view('companies.show', [
@@ -45,26 +50,12 @@ class CompanyController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Company  $company
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Company $company)
     {
         return view('companies.edit', [
             'company' =>  $company,
         ]);
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Company  $company
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $slug)
     {
         $company = Company::where('slug', $slug)->first();
