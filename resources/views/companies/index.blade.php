@@ -5,7 +5,10 @@
 <h1 class="text-center text-2xl py-4 font-bold">List Companies</h1>
 <ul class="grid grid-cols-2 w-3/4 mx-auto gap-4">
     @foreach($companies as $company)
-    <li class="bg-gray-200 flex my-3 w-full mx-4">
+    <li class="bg-gray-200 flex my-3 w-full mx-4 relative">
+        @if ($company->ownedby === auth()->user()->id)
+        <span class="absolute text-white right-0 bg-green-600 px-2">owned</span>
+        @endif
         <img class="w-20 h-20 object-cover" src="/storage/{{$company->avatar}}" alt="">
         <div class="flex flex-col justify-center ml-3">
             <a href="/companies/{{$company['slug']}}">

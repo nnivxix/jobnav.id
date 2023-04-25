@@ -9,11 +9,6 @@ use Illuminate\Support\Facades\Storage;
 
 class CompanyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $companies = Company::all();
@@ -21,34 +16,33 @@ class CompanyController extends Controller
             'companies' => $companies,
         ]);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('companies.add');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'avatar'       => "image|mimes:jpeg,png,jpg,gif,svg|max:2048",
+            'image_cover'  => "image|mimes:jpeg,png,jpg,gif,svg|max:2048",
+            "name"         => "required|string",
+            "slug"         => "required|string",
+            "ownedby"      => "number",
+            "about"        => "string",
+            "location"     => "string",
+            "website"      => "string",
+            "full_address" => "string",
+        ]);
+        $avatar = $request->file('avatar');
+        if ($avatar) {
+            $avatar_file_name = Str::random(40) . '.' . $avatar->getClientOriginalExtension();
+            $avatar->storePubliclyAs('company/avatars', $avatar_file_name, 'public');
+            $validate['avatar'] = 'company/avatars/' . $avatar_file_name;
+        }
+        Company::create($validate);
+        return redirect('/companies');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Company  $company
-     * @return \Illuminate\Http\Response
-     */
     public function show(Company $company)
     {
         return view('companies.show', [
@@ -56,26 +50,12 @@ class CompanyController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Company  $company
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Company $company)
     {
         return view('companies.edit', [
             'company' =>  $company,
         ]);
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Company  $company
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $slug)
     {
         $company = Company::where('slug', $slug)->first();

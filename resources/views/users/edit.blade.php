@@ -6,7 +6,7 @@
     {{ method_field('put') }}
     @csrf
     <div class="flex flex-col">
-        <img class="w-36 h-36 rounded-full object-cover" src="{{ asset('/storage/'. $profile['avatar']) }}" alt="" id="preview">
+        <img class="w-36 h-36 rounded-full object-cover" src=" {{$profile['avatar'] ?  '/storage/' . $profile['avatar'] : '/images/default_foto.webp' }}" alt="" id="preview">
         <input type="file" accept="image/png, image/jpeg" name="avatar" id="imageInput" onchange="previewFiles()" class="pt-6" />
     </div>
     <div class="my-5 flex flex-col">

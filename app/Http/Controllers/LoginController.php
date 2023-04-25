@@ -37,7 +37,7 @@ class LoginController extends Controller
   public function store(Request $request)
   {
     $credential = $request->validate([
-      'email' => 'required|email:dns',
+      'email' => 'required|email',
       'password' => 'required'
     ]);
     if (Auth::attempt($credential)) {
