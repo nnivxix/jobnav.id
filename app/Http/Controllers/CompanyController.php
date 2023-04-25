@@ -9,11 +9,6 @@ use Illuminate\Support\Facades\Storage;
 
 class CompanyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $companies = Company::all();
@@ -21,15 +16,9 @@ class CompanyController extends Controller
             'companies' => $companies,
         ]);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('companies.add');
     }
 
     /**
