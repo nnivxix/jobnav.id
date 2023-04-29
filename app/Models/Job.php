@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Job extends Model
 {
     use HasFactory;
+    protected $cast = [
+        'posted_at' => 'date'
+    ];
+    protected $guarded = [
+        'id',
+    ];
 }
