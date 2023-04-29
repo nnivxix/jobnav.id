@@ -3,6 +3,7 @@
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
+use App\Models\Job;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,62 +32,7 @@ Route::get('/', function () {
       "title" => "Career Advice"
     ],
   ];
-  $latest_jobs = [
-    [
-      "icon" => "images/company_example.svg",
-      "company" => "Laracast",
-      "position" => "Junior Designer",
-      "title" => "UI Designer",
-      "description" => "We are seeking developers who have a passion for software development with a motivated and energetic attitude. You will be contributing in a team environment to the design and implementation of both backend and frontend portions of the project. Collaborate with our team using agile practices to plan and execute required features.",
-      "location" => "Jakarta",
-      "job_type" => "remote"
-    ],
-    [
-      "icon" => "images/company_example.svg",
-      "company" => "Laracast",
-      "position" => "Junior Designer",
-      "title" => "UI Designer",
-      "description" => "We are seeking developers who have a passion for software development with a motivated and energetic attitude. You will be contributing in a team environment to the design and implementation of both backend and frontend portions of the project. Collaborate with our team using agile practices to plan and execute required features.",
-      "location" => "Jakarta",
-      "job_type" => "remote"
-    ],
-    [
-      "icon" => "images/company_example.svg",
-      "company" => "Laracast",
-      "position" => "Junior Designer",
-      "title" => "UI Designer",
-      "description" => "We are seeking developers who have a passion for software development with a motivated and energetic attitude. You will be contributing in a team environment to the design and implementation of both backend and frontend portions of the project. Collaborate with our team using agile practices to plan and execute required features.",
-      "location" => "Jakarta",
-      "job_type" => "remote"
-    ],
-    [
-      "icon" => "images/company_example.svg",
-      "company" => "Laracast",
-      "position" => "Junior Designer",
-      "title" => "UI Designer",
-      "description" => "We are seeking developers who have a passion for software development with a motivated and energetic attitude. You will be contributing in a team environment to the design and implementation of both backend and frontend portions of the project. Collaborate with our team using agile practices to plan and execute required features.",
-      "location" => "Jakarta",
-      "job_type" => "remote"
-    ],
-    [
-      "icon" => "images/company_example.svg",
-      "company" => "Laracast",
-      "position" => "Junior Designer",
-      "title" => "UI Designer",
-      "description" => "We are seeking developers who have a passion for software development with a motivated and energetic attitude. You will be contributing in a team environment to the design and implementation of both backend and frontend portions of the project. Collaborate with our team using agile practices to plan and execute required features.",
-      "location" => "Jakarta",
-      "job_type" => "remote"
-    ],
-    [
-      "icon" => "images/company_example.svg",
-      "company" => "Laracast",
-      "position" => "Junior Designer",
-      "title" => "UI Designer",
-      "description" => "We are seeking developers who have a passion for software development with a motivated and energetic attitude. You will be contributing in a team environment to the design and implementation of both backend and frontend portions of the project. Collaborate with our team using agile practices to plan and execute required features.",
-      "location" => "Jakarta",
-      "job_type" => "remote"
-    ],
-  ];
+  $latest_jobs = Job::all();
   $latest_posts = [
     [
       "image" => "images/post_images/1.jpg",
