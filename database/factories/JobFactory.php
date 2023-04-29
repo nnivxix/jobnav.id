@@ -18,15 +18,15 @@ class JobFactory extends Factory
     public function definition()
     {
         return [
-            'uuid' => fake()->uuid(),
-            'company_id' => fn () => Company::factory()->create()->id,
-            'title' => fake()->jobTitle(),
-            'position' => fake()->sentence(3, false),
-            'location' => fake()->country(),
-            'salary' => fake()->numberBetween(200, 10000),
+            'uuid'        => fake()->uuid(),
+            'company_id'  => fn () => Company::factory()->create()->id,
+            'title'       => fake()->jobTitle(),
+            'position'    => fake()->sentence(3, false),
+            'location'    => fake()->country(),
+            'salary'      => fake()->numberBetween(200, 10000),
             'description' => fake()->sentence(56, false),
-            'categories' => str_replace(" ", ",", fake()->sentence(7)),
-            'posted_at' => fake()->dateTimeInInterval('now', '+1 year'),
+            'categories'  => str_replace(" ", ",", fake()->sentence(7)),
+            'posted_at'   => fake()->dateTimeInInterval('now', '+1 year'),
         ];
     }
 }
