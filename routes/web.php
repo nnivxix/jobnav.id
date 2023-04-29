@@ -32,7 +32,7 @@ Route::get('/', function () {
       "title" => "Career Advice"
     ],
   ];
-  $latest_jobs = Job::all();
+  $latest_jobs = Job::all()->take(6);
   $latest_posts = [
     [
       "image" => "images/post_images/1.jpg",
