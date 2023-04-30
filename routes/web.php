@@ -104,4 +104,5 @@ Route::controller(CompanyController::class)->group(function () {
 
 Route::controller(JobController::class)->group(function () {
   Route::get('/jobs', 'index')->name('jobs.index');
+  Route::get('/jobs/{job:uuid}', 'show')->name('jobs.show');
 });

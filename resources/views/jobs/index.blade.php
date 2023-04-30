@@ -27,7 +27,11 @@
         <div class="flex my-2 items-center">
             <img class="w-24" src="{{URL::asset('/storage/'.$job->company->avatar)}}" alt="{{$job['title']}}">
             <div class="px-3 w-full">
-                <h1 class="text-xl font-medium w-full">{{ $job['title'] }}</h1>
+                <h1 class="text-xl font-medium w-full">
+                    <a href="/jobs/{{$job['uuid']}}">
+                        {{ $job['title'] }}
+                </h1>
+                </a>
                 <h2 class="text-lg">{{ $job['position'] }}</h2>
                 <div class="flex justify-between">
                     <span>{{ $job['location'] }}</span>
