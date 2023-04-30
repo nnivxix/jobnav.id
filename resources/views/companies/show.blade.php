@@ -22,6 +22,24 @@
     <h1 class="text-2xl border-b-2 pb-5">About - {{ $company['name'] }}</h1>
     <p class="text-md text-justify break-all pt-3">{{ $company['about'] }}</p>
 </div>
+<h1 class="text-center font-medium text-xl pb-4">Latest Job in {{$company['name']}}</h1>
+<div class="grid grid-cols-3 w-2/3 mx-auto justify-items-start">
+    @foreach($jobs as $job)
+    <div class="flex justify-self-start my-2 items-center">
+        <img class="w-24" src="{{URL::asset('/storage/'.$job->company->avatar)}}" alt="{{$job['title']}}">
+        <div class="px-3 w-full">
+            <h1 class="text-xl font-medium w-full">
+                <a href="/jobs/{{$job['uuid']}}">
+                    {{ $job['title'] }}
+            </h1>
+            </a>
+            <h2 class="text-lg">{{ $job['position'] }}</h2>
+            <p>{{ $job['location'] }}</p>
+            <p>$ {{ number_format($job['salary'], 0, "," )}}</p>
 
+        </div>
+    </div>
+    @endforeach
+</div>
 <x-footer></x-footer>
 @endsection
