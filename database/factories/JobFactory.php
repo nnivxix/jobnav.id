@@ -19,7 +19,7 @@ class JobFactory extends Factory
     {
         return [
             'uuid'        => fake()->uuid(),
-            'company_id'  => fn () => Company::factory()->create()->id,
+            'company_id'  => random_int(1, 20),
             'title'       => fake()->jobTitle(),
             'position'    => fake()->sentence(3, false),
             'location'    => fake()->country(),

@@ -30,8 +30,11 @@ class JobController extends Controller
 
     public function show(Job $job)
     {
+        $company_jobs = Job::all()->where('company_id', $job->company->id)
+            ->where('uuid', '!=', $job->uuid);
         return view('jobs.show', [
-            'job' => $job
+            'job' => $job,
+            'company_jobs' => $company_jobs,
         ]);
     }
 
