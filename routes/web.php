@@ -3,6 +3,7 @@
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\JobController;
 use App\Models\Job;
 use Illuminate\Support\Facades\Route;
 
@@ -99,4 +100,8 @@ Route::controller(CompanyController::class)->group(function () {
   Route::get('/companies/{company:slug}', 'show');
   Route::get('/companies/{company:slug}/edit', 'edit')->middleware('owner.company')->name('companies.edit');
   Route::put('/companies/update/{slug}', 'update')->name('companies.update');
+});
+
+Route::controller(JobController::class)->group(function () {
+  Route::get('/jobs', 'index')->name('jobs.index');
 });

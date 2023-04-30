@@ -1,7 +1,7 @@
 <nav class="grid grid-cols-6 px-16 py-4 text-smoke-700 bg-gray-100">
   <h1 class="col-span-1 text-2xl font-bold "><a href="/">Jobnav.id</a></h1>
   <ul class="text-md flex w-1/2  place-self-center justify-center col-span-4" id="middle">
-    <li class="px-3"><a href="#">Jobs</a></li>
+    <li class="px-3"><a href="/jobs">Jobs</a></li>
     <li class="px-3"><a href="#">Learn</a></li>
     <li class="px-3"><a href="/companies">Companies</a></li>
     <li class="px-3"><a href="#">Services</a></li>
