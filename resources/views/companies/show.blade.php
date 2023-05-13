@@ -23,7 +23,7 @@
     <p class="text-md text-justify break-all pt-3">{{ $company['about'] }}</p>
 </div>
 <h1 class="text-center font-medium text-xl pb-4">Latest Job in {{$company['name']}}</h1>
-<div class="grid grid-cols-3 w-2/3 mx-auto justify-items-start">
+<div class="grid grid-cols-3 w-2/3 mx-auto justify-items-start sticky">
     @foreach($jobs as $job)
     <div class="flex justify-self-start my-2 items-center">
         <img class="w-24" src="{{URL::asset('/storage/'.$job->company->avatar)}}" alt="{{$job['title']}}">

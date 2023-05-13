@@ -35,7 +35,7 @@
                 <h2 class="text-lg">{{ $job['position'] }}</h2>
                 <div class="flex justify-between">
                     <span>{{ $job['location'] }}</span>
-                    <span>$ {{ $job['salary'] }}</span>
+                    <span>$ {{ number_format($job['salary'], 0, "," )}}</span>
                 </div>
             </div>
         </div>

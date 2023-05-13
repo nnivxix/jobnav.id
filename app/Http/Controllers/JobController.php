@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use App\Models\Job;
 use Illuminate\Http\Request;
 
@@ -38,27 +39,34 @@ class JobController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Job  $job
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Job $job)
     {
-        //
+        if ($job->company->ownedby !== auth()->user()->id) {
+            return redirect('/jobs');
+        }
+        return view('jobs.edit', [
+            'job' => $job,
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateJobRequest  $request
-     * @param  \App\Models\Job  $job
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Job $job)
     {
-        //
+        $validate = $request->validate([
+            'title' => 'string|required',
+            'position' => 'string|required',
+            'location' => 'string|required',
+            'salary' => 'string|required',
+            'categories' => 'string|required',
+            'posted_at' => 'date|required',
+            'description' => 'string|required',
+        ]);
+
+        $validate['company_id'] = $job->company_id;
+        $validate['uuid'] = $job->uuid;
+
+
+        $job->update($validate);
+        return redirect('/jobs/' . $job->uuid)->with('success', 'Job has been updated!');;
     }
 
     /**

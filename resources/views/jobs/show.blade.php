@@ -7,7 +7,7 @@
         <div class="flex items-center relative">
 
             @if(auth()->user() && auth()->user()->id === $job->company->ownedby)
-            <span class="absolute right-4 p-1 rounded-sm text-md bg-green-500 top-0"><a href="/{{$job['uuid']}}/edit">edit job</a></span>
+            <span class="absolute right-4 p-1 rounded-sm text-md bg-green-500 top-0"><a href="/jobs/{{$job['uuid']}}/edit">edit job</a></span>
             @endif
             <img class="w-36" src="{{URL::asset('/storage/'.$job->company->avatar)}}" alt="">
             <div class="ml-4">

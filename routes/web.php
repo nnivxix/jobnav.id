@@ -105,4 +105,6 @@ Route::controller(CompanyController::class)->group(function () {
 Route::controller(JobController::class)->group(function () {
   Route::get('/jobs', 'index')->name('jobs.index');
   Route::get('/jobs/{job:uuid}', 'show')->name('jobs.show');
+  Route::get('/jobs/{job:uuid}/edit', 'edit')->name('jobs.edit');
+  Route::put('/jobs/update/{job:uuid}', 'update')->name('jobs.update');
 });
