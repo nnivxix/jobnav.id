@@ -25,7 +25,7 @@
     <section class="col-span-2 grid grid-cols-2 gap-2">
         @foreach($jobs as $job)
         <div class="flex my-2 items-center">
-            <img class="w-24" src="{{URL::asset('/storage/'.$job->company->avatar)}}" alt="{{$job['title']}}">
+            <img class="w-24 aspect-square object-cover" src="{{URL::asset('/storage/'.$job->company->avatar)}}" alt="{{$job['title']}}">
             <div class="px-3 w-full">
                 <h1 class="text-xl font-medium w-full">
                     <a href="/jobs/{{$job['uuid']}}">
