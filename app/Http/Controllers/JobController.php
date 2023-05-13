@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use DateTime;
 use App\Models\Job;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class JobController extends Controller
@@ -20,7 +22,9 @@ class JobController extends Controller
 
     public function create()
     {
-        //
+        return view('jobs.add', [
+            'companies' => Company::all()->where('ownedby', auth()->user()->id),
+        ]);
     }
 
 

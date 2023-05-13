@@ -19,7 +19,11 @@
 </div>
 
 <div class="w-3/5 mx-auto my-6">
-    <h1 class="text-2xl border-b-2 pb-5">About - {{ $company['name'] }}</h1>
+    <h1 class="text-2xl border-b-2 pb-5 relative">About - {{ $company['name'] }}
+        @if( auth()->check() && auth()->user()->id === $company['ownedby'])
+        <a href="{{route('jobs.create')}}" class="absolute right-0 top-0 text-sm p-3 bg-slate-600 text-white rounded-md">create job</a>
+        @endif
+    </h1>
     <p class="text-md text-justify break-all pt-3">{{ $company['about'] }}</p>
 </div>
 <h1 class="text-center font-medium text-xl pb-4">Latest Job in {{$company['name']}}</h1>
