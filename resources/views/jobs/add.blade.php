@@ -8,7 +8,7 @@
     <div class="my-5 flex w-1/2 flex-col">
         <label for="company_id">Choose a company:</label>
         <select class="p-2 w-auto" name="company_id" id="company_id">
-            <option default value=""> - </option>
+            <option value="" selected> - </option>
 
             @foreach ($companies as $company)
             <option value="{{$company->id}}">{{$company->name}}</option>
