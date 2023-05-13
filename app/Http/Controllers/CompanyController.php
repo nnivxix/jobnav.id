@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\Job;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -45,10 +46,14 @@ class CompanyController extends Controller
 
     public function show(Company $company)
     {
+        $jobs = Job::query()
+            ->with('company')
+            ->where('company_id', $company->id)
+            ->get();
 
         return view('companies.show', [
             'company' => $company,
-            'jobs' => $company->jobs,
+            'jobs' => $jobs,
         ]);
     }
 

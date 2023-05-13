@@ -33,7 +33,11 @@ Route::get('/', function () {
       "title" => "Career Advice"
     ],
   ];
-  $latest_jobs = Job::all()->take(6);
+  $latest_jobs = Job::query()
+    ->inRandomOrder()
+    ->with('company')
+    ->limit(6)
+    ->get();
   $latest_posts = [
     [
       "image" => "images/post_images/1.jpg",

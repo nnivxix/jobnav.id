@@ -14,6 +14,7 @@ class JobController extends Controller
     {
         $keyword = $request->get('keyword');
         $jobs = Job::query()
+            ->with('company')
             ->where('title', 'LIKE', "%{$keyword}%")
             ->orWhere('description', 'LIKE', "%{$keyword}%")
             ->get();
@@ -35,8 +36,11 @@ class JobController extends Controller
 
     public function show(Job $job)
     {
-        $company_jobs = Job::all()->where('company_id', $job->company->id)
-            ->where('uuid', '!=', $job->uuid);
+        $company_jobs = Job::query()
+            ->with('company')
+            ->where('company_id', $job->company->id)
+            ->whereNot('uuid', $job->uuid)
+            ->get();
         return view('jobs.show', [
             'job' => $job,
             'company_jobs' => $company_jobs,
