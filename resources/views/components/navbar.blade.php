@@ -8,7 +8,7 @@
   </ul>
   <ul class="text-md col-span-1 flex items-center w-3/4 place-self-end">
     @auth
-    <li class="px-3 font-semibold"><a href="/user">{{ auth()->user()->name }}</a></li>
+    <li class="px-3 font-semibold"><a href="/user">{{ Str::ucsplit(auth()->user()->name)[0] }}</a></li>
     <form action="/logout">
       <button>Logout</button>
     </form>
