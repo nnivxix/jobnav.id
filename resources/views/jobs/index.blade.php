@@ -24,7 +24,10 @@
     </aside>
     <section class="col-span-2 grid grid-cols-2 gap-2">
         @foreach($jobs as $job)
-        <div class="flex my-2 items-center">
+        <div class="flex my-2 items-center relative">
+            @if(auth()->user() && $job->company->ownedby === auth()->user()->id)
+            <a href="{{ env('APP_URL') }}/jobs/{{$job['uuid']}}/edit" class="absolute text-white top-0 right-0 bg-green-600 px-2">edit</a>
+            @endif
             <img class="w-24 aspect-square object-cover" src="{{URL::asset('/storage/'.$job->company->avatar)}}" alt="{{$job['title']}}">
             <div class="px-3 w-full">
                 <h1 class="text-xl font-medium w-full">
