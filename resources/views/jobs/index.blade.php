@@ -44,7 +44,9 @@
         </div>
         @endforeach
     </section>
-
+    <div class="my-4 col-span-2 col-end-4">
+        {{ $jobs->links('vendor.pagination.tailwind') }}
+    </div>
 </main>
 <x-footer></x-footer>
 @endsection

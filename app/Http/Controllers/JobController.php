@@ -13,12 +13,16 @@ class JobController extends Controller
 {
     public function index(Request $request)
     {
+        $request->validate([
+            'per_page' => 'integer|min:1|max:100',
+        ]);
         $keyword = $request->get('keyword');
         $jobs = Job::query()
             ->with('company')
+            ->whereDate('posted_at', '<=', now())
             ->where('title', 'LIKE', "%{$keyword}%")
             ->orWhere('description', 'LIKE', "%{$keyword}%")
-            ->get();
+            ->paginate(16);
         return view('jobs.index', compact('jobs', 'keyword'));
     }
 
