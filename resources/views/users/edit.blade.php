@@ -6,7 +6,7 @@
     {{ method_field('put') }}
     @csrf
     <div class="flex flex-col">
-        <img class="w-36 h-36 rounded-full object-cover" src=" {{$profile['avatar'] ?  '/storage/' . $profile['avatar'] : '/images/default_foto.webp' }}" alt="" id="preview">
+        <img class="w-36 h-36 rounded-full object-cover" src=" {{$user->profile['avatar'] ?  '/storage/' . $user->profile['avatar'] : '/images/default_foto.webp' }}" alt="" id="preview">
         <input type="file" accept="image/png, image/jpeg" name="avatar" id="imageInput" onchange="previewFiles()" class="pt-6" />
     </div>
     <div class="my-5 flex flex-col">
@@ -19,11 +19,11 @@
     </div>
     <div class="my-4 flex flex-col">
         <label for="header">Header</label>
-        <textarea class="border-2 w-1/2 p-2" id="header" name="header">{{ old('header', $profile['header']) }}</textarea>
+        <textarea class="border-2 w-1/2 p-2" id="header" name="header">{{ old('header', $user->profile['header']) }}</textarea>
     </div>
     <div class="my-4 flex flex-col">
         <label for="skills">Skills</label>
-        <input type="text" class="border-2 w-1/2 p-2" id="skills" name="skills" value="{{ old('skills', $profile['skills']) }}" />
+        <input type="text" class="border-2 w-1/2 p-2" id="skills" name="skills" value="{{ old('skills', $user->profile['skills']) }}" />
         <span class="text-sm">please separate with comma ","</span>
     </div>
     <button class="bg-carrot-600 text-white text-xl py-4 px-2 w-1/2 ">update</button>
