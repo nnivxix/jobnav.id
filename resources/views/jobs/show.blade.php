@@ -29,6 +29,9 @@
         <div class="my-4">
             @if(count($applied) == 0 && $job->company->ownedby != auth()->user()->id)
             <a href="/jobs/{{$job['uuid']}}/apply" class="bg-carrot-600 text-white p-3">Apply Now</a>
+            @elseif ($job->company->ownedby == auth()->user()->id)
+            <p class="p-2 bg-carrot-600 text-white">You cannot applied to your own job post</p>
+
             @else
             <p class="p-2 bg-carrot-600 text-white">You have applied</p>
             @endif
