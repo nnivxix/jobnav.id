@@ -26,9 +26,9 @@
         @endforeach
         <h1 class="text-2xl mt-6 font-bold"></h1>
         <p class="text-lg text-justify pr-5">{{$job['description']}}</p>
-        <form class="my-4">
-            <button class="bg-carrot-600 text-white p-3">Apply Now</button>
-        </form>
+        <div class="my-4">
+            <a href="/jobs/{{$job['uuid']}}/apply" class="bg-carrot-600 text-white p-3">Apply Now</a>
+        </div>
     </div>
     <div class="col-span-2">
         <h1 class="text-xl font-medium  text-smoke-700 py-3">Field Job in <span class="font-bold"> {{$job->company->name}}</span></h1>
