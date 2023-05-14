@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Company;
 use DateTime;
 use App\Models\Job;
 use App\Models\User;
+use App\Models\Company;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class JobController extends Controller
@@ -31,7 +32,19 @@ class JobController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'title'       => 'string|required',
+            'position'    => 'string|required',
+            'location'    => 'string|required',
+            'salary'      => 'integer|required',
+            'categories'  => 'string|required',
+            'posted_at'   => 'date|required',
+            'description' => 'string|required',
+        ]);
+        $validate['company_id'] = $request->company_id;
+        $validate['uuid'] = Str::uuid();
+        Job::create($validate);
+        return redirect('/jobs');
     }
 
     public function show(Job $job)
