@@ -3,6 +3,8 @@
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\JobController;
+use App\Models\Job;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,62 +33,11 @@ Route::get('/', function () {
       "title" => "Career Advice"
     ],
   ];
-  $latest_jobs = [
-    [
-      "icon" => "images/company_example.svg",
-      "company" => "Laracast",
-      "position" => "Junior Designer",
-      "title" => "UI Designer",
-      "description" => "We are seeking developers who have a passion for software development with a motivated and energetic attitude. You will be contributing in a team environment to the design and implementation of both backend and frontend portions of the project. Collaborate with our team using agile practices to plan and execute required features.",
-      "location" => "Jakarta",
-      "job_type" => "remote"
-    ],
-    [
-      "icon" => "images/company_example.svg",
-      "company" => "Laracast",
-      "position" => "Junior Designer",
-      "title" => "UI Designer",
-      "description" => "We are seeking developers who have a passion for software development with a motivated and energetic attitude. You will be contributing in a team environment to the design and implementation of both backend and frontend portions of the project. Collaborate with our team using agile practices to plan and execute required features.",
-      "location" => "Jakarta",
-      "job_type" => "remote"
-    ],
-    [
-      "icon" => "images/company_example.svg",
-      "company" => "Laracast",
-      "position" => "Junior Designer",
-      "title" => "UI Designer",
-      "description" => "We are seeking developers who have a passion for software development with a motivated and energetic attitude. You will be contributing in a team environment to the design and implementation of both backend and frontend portions of the project. Collaborate with our team using agile practices to plan and execute required features.",
-      "location" => "Jakarta",
-      "job_type" => "remote"
-    ],
-    [
-      "icon" => "images/company_example.svg",
-      "company" => "Laracast",
-      "position" => "Junior Designer",
-      "title" => "UI Designer",
-      "description" => "We are seeking developers who have a passion for software development with a motivated and energetic attitude. You will be contributing in a team environment to the design and implementation of both backend and frontend portions of the project. Collaborate with our team using agile practices to plan and execute required features.",
-      "location" => "Jakarta",
-      "job_type" => "remote"
-    ],
-    [
-      "icon" => "images/company_example.svg",
-      "company" => "Laracast",
-      "position" => "Junior Designer",
-      "title" => "UI Designer",
-      "description" => "We are seeking developers who have a passion for software development with a motivated and energetic attitude. You will be contributing in a team environment to the design and implementation of both backend and frontend portions of the project. Collaborate with our team using agile practices to plan and execute required features.",
-      "location" => "Jakarta",
-      "job_type" => "remote"
-    ],
-    [
-      "icon" => "images/company_example.svg",
-      "company" => "Laracast",
-      "position" => "Junior Designer",
-      "title" => "UI Designer",
-      "description" => "We are seeking developers who have a passion for software development with a motivated and energetic attitude. You will be contributing in a team environment to the design and implementation of both backend and frontend portions of the project. Collaborate with our team using agile practices to plan and execute required features.",
-      "location" => "Jakarta",
-      "job_type" => "remote"
-    ],
-  ];
+  $latest_jobs = Job::query()
+    ->inRandomOrder()
+    ->with('company')
+    ->limit(6)
+    ->get();
   $latest_posts = [
     [
       "image" => "images/post_images/1.jpg",
@@ -139,7 +90,7 @@ Route::post('/login', [LoginController::class, 'store']);
 Route::controller(UserController::class)->group(function () {
   Route::get('/user',  'index')->middleware(['auth']);
   Route::get('/user/{user:username}', 'show');
-  Route::get('/user/{user:username}/edit', 'edit')->middleware('auth');
+  Route::get('/user/{user}/edit', 'edit')->middleware('auth');
   Route::put('/user/update', 'update')->middleware('auth')->name('user.update');
   Route::get('/logout', 'destroy')->middleware('auth');
   Route::get('/register', 'create')->name('register')->middleware('guest');
@@ -153,4 +104,13 @@ Route::controller(CompanyController::class)->group(function () {
   Route::get('/companies/{company:slug}', 'show');
   Route::get('/companies/{company:slug}/edit', 'edit')->middleware('owner.company')->name('companies.edit');
   Route::put('/companies/update/{slug}', 'update')->name('companies.update');
+});
+
+Route::controller(JobController::class)->group(function () {
+  Route::get('/jobs', 'index')->name('jobs.index');
+  Route::get('/jobs/create', 'create')->name('jobs.create')->middleware(['auth', 'has.company']);
+  Route::post('/jobs', 'store')->name('jobs.store')->middleware('auth');
+  Route::get('/jobs/{job:uuid}', 'show')->name('jobs.show');
+  Route::get('/jobs/{job:uuid}/edit', 'edit')->name('jobs.edit');
+  Route::put('/jobs/update/{job:uuid}', 'update')->name('jobs.update');
 });

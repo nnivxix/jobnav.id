@@ -16,11 +16,10 @@ class UserController extends Controller
 {
   public function index()
   {
-    $user = User::findOrFail(Auth::user()->id);
     $profile = Profile::findOrFail(Auth::user()->id);
     $experiences = Experience::all()->where('user_id', Auth::user()->id);
     return view('users.index', [
-      'user'    => $user,
+      'user'    => Auth::user(),
       'profile' => $profile,
       'experiences' => $experiences,
     ]);
@@ -58,7 +57,7 @@ class UserController extends Controller
   {
     return view('users.edit', [
       'user' =>  $user,
-      'profile' => Profile::find($user->id)
+      'profile' => $user->profile
     ]);
   }
   public function update(Request $request)
